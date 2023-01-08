@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>회원 가입</title>
+    <script src="https://code.jquery.com/jquery-3.6.2.min.js" integrity="sha256-2krYZKh//PcchRtd+H+VyyQoZ/e3EcrkxhM8ycwASPA=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(() => {
+            $('form').on('submit', () => {
+                let password = $(this).find('input[name=password]').val()
+                let rePassword = $(this).find('input[name=rePassword]').val()
+
+                if (password != rePassword) {
+                    alert('비밀번호와 확인 비밀번호가 일치하지 않습니다.')
+                    return false
+                }
+            })
+        })
+    </script>
+</head>
+<body>
+    <h1>회원 가입</h1>
+    <div th:replace="/fragment/layout.html :: fragment-body-menu"></div>
+    <form method="post">
+        <div>
+            <input type="email" name="userId" placeholder="아이디(이메일) 입력" required />
+        </div>
+        <div>
+            <input type="text" name="userName" placeholder="이름 입력" required />
+        </div>
+        <div>
+            <input type="tel" name="phone" placeholder="전화번호 입력" required />
+        </div>
+        <div>
+            <input type="password" name="password" placeholder="비밀번호 입력" required />
+        </div>
+        <div>
+            <input type="password" name="rePassword" placeholder="비밀번호 확인" required />
+        </div>
+        <div>
+            <button>회원 가입 하기</button>
+        </div>
+    </form>
+</body>
+</html>

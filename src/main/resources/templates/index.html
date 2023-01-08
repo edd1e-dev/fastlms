@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>인덱스 페이지</title>
+
+    <link rel="stylesheet" href="/bxslider/dist/jquery.bxslider.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="/bxslider/dist/jquery.bxslider.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('.slider').bxSlider();
+        });
+    </script>
+</head>
+<body>
+    <h1> 인덱스 페이지 </h1>
+    <div th:replace="/fragment/layout.html :: fragment-body-menu"></div>
+
+    <div class="slider">
+        <div th:each="x : ${list}">
+            <th:block th:switch="${x.targetType}">
+                <a th:case="BLANK" th:href="${x.getLink()}" target="_blank">
+                    <img th:src="${x.urlFilename}"/>
+                </a>
+                <a th:case="PARENT" th:href="${x.getLink()}" target="_parent">
+                    <img th:src="${x.urlFilename}"/>
+                </a>
+                <a th:case="SELF" th:href="${x.getLink()}" target="_self">
+                    <img th:src="${x.urlFilename}"/>
+                </a>
+                <a th:case="TOP" th:href="${x.getLink()}" target="_top">
+                    <img th:src="${x.urlFilename}"/>
+                </a>
+            </th:block>
+        </div>
+        <!--
+        <div>
+            <a href="#"><img src="https://bxslider.com/assets/images/plant.jpg"></a>
+        </div>
+        <div>
+            <a href="#"><img src="https://bxslider.com/assets/images/daisies.jpg"></a>
+        </div>
+        <div>
+            <a href="#"><img src="https://bxslider.com/assets/images/succulents.jpg"></a>
+        </div>
+        -->
+    </div>
+
+</body>
+</html>
